@@ -45,7 +45,9 @@ To try it from a phone on the same Wi-Fi network, start the dev server on all in
 npm run dev -- -H 0.0.0.0
 ```
 
-Then open `http://<your-computer-lan-ip>:3000` on the phone. For an actual commuting setup, deploy the app to a reachable HTTPS URL and install it from the browser's Add to Home Screen option. The service worker caches visited pages and static assets, but the first install still needs a web URL.
+Then open `http://<your-computer-lan-ip>:3000/offline` on the phone. For an actual commuting setup, deploy the app to a reachable HTTPS URL and install it from the browser's Add to Home Screen option. The `/offline` route bundles the current curriculum into static pages so it can run without the local Prisma database once cached.
+
+Before commuting, open `/offline` and each level once while you still have a connection. That gives the service worker a chance to cache the static study pages and app assets.
 
 ## Commands
 

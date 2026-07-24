@@ -13,6 +13,9 @@ export default async function HomePage() {
           <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-slate-300">
             Study Sonar products, governance concepts, and CSE interview scenarios in short levels that work well on a phone.
           </p>
+          <Link href="/offline" className="mt-5 inline-flex min-h-12 items-center rounded-lg border border-good bg-good/10 px-4 py-3 font-medium text-good transition hover:bg-good/15">
+            Open offline study mode
+          </Link>
         </div>
 
         {levels.length === 0 ? (

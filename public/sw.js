@@ -1,6 +1,7 @@
-const CACHE_NAME = "sonar-products-v1";
+const CACHE_NAME = "sonar-products-v2";
 const APP_SHELL = [
   "/",
+  "/offline",
   "/manifest.webmanifest",
   "/icons/sonar-products.svg"
 ];

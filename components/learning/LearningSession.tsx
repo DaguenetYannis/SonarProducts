@@ -16,9 +16,10 @@ type LearningSessionProps = Readonly<{
   title: string;
   topics: string[];
   questions: LearningQuestion[];
+  homeHref?: string;
 }>;
 
-export function LearningSession({ levelId, title, topics, questions }: LearningSessionProps) {
+export function LearningSession({ levelId, title, topics, questions, homeHref = "/" }: LearningSessionProps) {
   const [retrySeed, setRetrySeed] = useState(1);
   const service = useMemo(() => new LevelSessionService({
     levelAttemptId: `local-${retrySeed}`,
@@ -79,7 +80,7 @@ export function LearningSession({ levelId, title, topics, questions }: LearningS
     <main className="min-h-dvh pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-6 sm:py-8">
       <div className="mx-auto grid max-w-2xl gap-5 sm:gap-6">
         <ProgressHeader title={title} topics={topics} current={Math.min(snapshot.currentIndex + 1, snapshot.order.length)} total={snapshot.order.length} />
-        {result ? <ResultScreen result={result} onRetry={retry} /> : null}
+        {result ? <ResultScreen result={result} onRetry={retry} homeHref={homeHref} /> : null}
         {!result && question && attempt ? (
           <div className="rounded-lg border border-line bg-panel p-4 sm:p-5">
             {question.type === "quiz" ? <QuizQuestionView question={question} attempt={attempt} disabled={locked} onAnswer={objectiveAnswer} /> : null}

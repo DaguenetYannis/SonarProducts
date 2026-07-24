@@ -13,4 +13,13 @@ test.describe("learning app shell", () => {
     await expect(page.locator('link[rel="manifest"]')).toHaveAttribute("href", "/manifest.webmanifest");
     await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute("content", "#090b10");
   });
+
+  test("serves a static offline study mode", async ({ page }) => {
+    await page.goto("/offline");
+    await expect(page.getByRole("heading", { name: "Sonar Products" })).toBeVisible();
+    await page.getByRole("link", { name: /Product and Vocabulary Foundations/ }).click();
+    await expect(page).toHaveURL(/\/offline\/levels\/product-and-vocabulary-foundations/);
+    await expect(page.getByRole("heading", { name: "Product and Vocabulary Foundations" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "What does Connected Mode add to SonarQube for IDE?" })).toBeVisible();
+  });
 });

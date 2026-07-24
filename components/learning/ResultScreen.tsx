@@ -6,6 +6,7 @@ import type { LevelResult } from "@/domain/entities/question";
 type ResultScreenProps = Readonly<{
   result: LevelResult;
   onRetry: () => void;
+  homeHref?: string;
 }>;
 
 type MetricProps = Readonly<{
@@ -13,7 +14,7 @@ type MetricProps = Readonly<{
   value: string | number;
 }>;
 
-export function ResultScreen({ result, onRetry }: ResultScreenProps) {
+export function ResultScreen({ result, onRetry, homeHref = "/" }: ResultScreenProps) {
   return (
     <section className="grid gap-5 rounded-lg border border-line bg-panel p-4 text-center sm:p-6">
       <h2 className="text-2xl font-semibold leading-tight">Level complete</h2>
@@ -27,7 +28,7 @@ export function ResultScreen({ result, onRetry }: ResultScreenProps) {
       </dl>
       <div className="grid gap-3 sm:grid-cols-2">
         <button type="button" onClick={onRetry} className="min-h-12 rounded-lg border border-good bg-good/10 px-4 py-3 font-medium">Retry level</button>
-        <Link href="/" className="min-h-12 rounded-lg border border-line bg-ink px-4 py-3 font-medium">Return to levels</Link>
+        <Link href={homeHref} className="min-h-12 rounded-lg border border-line bg-ink px-4 py-3 font-medium">Return to levels</Link>
       </div>
     </section>
   );
