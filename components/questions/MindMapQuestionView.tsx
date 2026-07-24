@@ -14,13 +14,13 @@ export function MindMapQuestionView({ question, attempt, disabled, onAnswer }: {
 
   return (
     <section className="grid gap-5" aria-labelledby="mindmap-prompt">
-      <h2 id="mindmap-prompt" className="text-2xl font-semibold">{question.prompt}</h2>
-      <div className="rounded-lg border border-line bg-ink p-5">
+      <h2 id="mindmap-prompt" className="text-2xl font-semibold leading-tight">{question.prompt}</h2>
+      <div className="rounded-lg border border-line bg-ink p-4 sm:p-5">
         <div className="grid gap-3">
           {question.nodes.map((node) => (
             <div key={node.id} className={`rounded-lg border px-4 py-3 ${node.isTarget ? "border-dashed border-good" : "border-line"}`}>
               <span className="text-sm text-slate-400">{node.parentId ? "Child" : "Parent"}</span>
-              <p className="mt-1 text-lg">{node.isTarget ? (targetFilled ? correctChoice?.label : "Empty slot") : node.label}</p>
+              <p className="mt-1 text-lg leading-7">{node.isTarget ? (targetFilled ? correctChoice?.label : "Empty slot") : node.label}</p>
             </div>
           ))}
         </div>

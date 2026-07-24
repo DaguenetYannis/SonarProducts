@@ -1,0 +1,19 @@
+{
+  "name": "Sonar Products Learning",
+  "short_name": "Sonar",
+  "description": "Study Sonar products and CSE interview scenarios from a mobile-friendly learning app.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#090b10",
+  "theme_color": "#090b10",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/sonar-products.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
