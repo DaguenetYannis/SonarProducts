@@ -18,6 +18,8 @@ This project is a Next.js app. Netlify supports modern Next.js projects with its
 
 Connect the GitHub repository to the Netlify site, then deploy from `main`.
 
+No `DATABASE_URL` is required for the public Netlify app. The root page and `/offline` pages are statically generated from bundled JSON content. The Prisma-backed `/levels/[levelId]` route remains for local/database experiments, but it is not needed for the interviewer install flow.
+
 ## Phone Install Flow
 
 1. Open `https://learn-products.netlify.app/offline` on the phone.
