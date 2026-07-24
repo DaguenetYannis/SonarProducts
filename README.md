@@ -41,6 +41,8 @@ npm run dev
 
 `npm run dev` applies the local SQLite migration, imports `content/sonar-products-learning.json`, and starts Next.js. Open `http://localhost:3000`.
 
+The public Netlify experience uses statically bundled curriculum data and does not require `DATABASE_URL`.
+
 To try it from a phone on the same Wi-Fi network, start the dev server on all interfaces:
 
 ```bash
