@@ -2,6 +2,8 @@
 
 Local learning app for studying Sonar products, code-quality concepts, and Customer Success Engineer interview scenarios. The app runs directly from this repository root.
 
+Public offline app: `https://learn-products.netlify.app/offline`
+
 ## What Is Included
 
 - Next.js learning interface with topic levels and mixed question sessions.
@@ -98,6 +100,7 @@ The default curriculum lives in `content/sonar-products-learning.json`. Supporti
 - `docs/sonar-question-review.md`
 - `docs/adr/0001-local-learning-scaffold.md`
 - `docs/git-workflow.md`
+- `docs/deployment.md`
 
 The importer validates quiz and mind-map shape, single correct objective answers, and the initial one-target mind-map implementation.
 
