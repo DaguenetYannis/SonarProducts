@@ -11,7 +11,7 @@ export function QuizQuestionView({ question, attempt, disabled, onAnswer }: {
 }) {
   return (
     <section className="grid gap-5" aria-labelledby="quiz-prompt">
-      <h2 id="quiz-prompt" className="text-2xl font-semibold">{question.prompt}</h2>
+      <h2 id="quiz-prompt" className="text-2xl font-semibold leading-tight">{question.prompt}</h2>
       <div className="grid gap-3">
         {question.choices.map((choice) => (
           <ChoiceButton

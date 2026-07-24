@@ -10,6 +10,7 @@ Local learning app for studying Sonar products, code-quality concepts, and Custo
 - JSON content import and validation for the Sonar learning curriculum.
 - Unit, component, and Playwright test coverage.
 - Research, glossary, and question-review notes under `docs`.
+- Installable PWA metadata and mobile-first touch ergonomics for phone study.
 
 ## Architecture
 
@@ -22,6 +23,7 @@ Local learning app for studying Sonar products, code-quality concepts, and Custo
 +-- domain/                 Entities, services, and repository contracts
 +-- infrastructure/         Prisma database and repository implementation
 +-- lib/                    Import, validation, and transition config
++-- public/                 PWA manifest, service worker, and app icon
 +-- prisma/                 SQLite schema and migrations
 +-- scripts/                Local migration and content import commands
 +-- tests/                  Vitest and Playwright tests
@@ -36,6 +38,14 @@ npm run dev
 ```
 
 `npm run dev` applies the local SQLite migration, imports `content/sonar-products-learning.json`, and starts Next.js. Open `http://localhost:3000`.
+
+To try it from a phone on the same Wi-Fi network, start the dev server on all interfaces:
+
+```bash
+npm run dev -- -H 0.0.0.0
+```
+
+Then open `http://<your-computer-lan-ip>:3000` on the phone. For an actual commuting setup, deploy the app to a reachable HTTPS URL and install it from the browser's Add to Home Screen option. The service worker caches visited pages and static assets, but the first install still needs a web URL.
 
 ## Commands
 
@@ -85,6 +95,7 @@ The default curriculum lives in `content/sonar-products-learning.json`. Supporti
 - `docs/sonar-cse-glossary.md`
 - `docs/sonar-question-review.md`
 - `docs/adr/0001-local-learning-scaffold.md`
+- `docs/git-workflow.md`
 
 The importer validates quiz and mind-map shape, single correct objective answers, and the initial one-target mind-map implementation.
 

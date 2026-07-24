@@ -6,16 +6,34 @@
   color-scheme: dark;
 }
 
+html {
+  min-height: 100%;
+  background: #090b10;
+}
+
 body {
   margin: 0;
   background: #090b10;
   color: #f5f7fb;
+  min-height: 100%;
+  overscroll-behavior-y: contain;
+  -webkit-tap-highlight-color: transparent;
+}
+
+main {
+  padding-left: max(1.25rem, env(safe-area-inset-left));
+  padding-right: max(1.25rem, env(safe-area-inset-right));
 }
 
 button:focus-visible,
 a:focus-visible {
   outline: 3px solid #65d6ad;
   outline-offset: 3px;
+}
+
+button,
+a {
+  touch-action: manipulation;
 }
 
 @media (prefers-reduced-motion: reduce) {

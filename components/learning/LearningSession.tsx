@@ -74,12 +74,12 @@ export function LearningSession({ levelId, title, topics, questions }: { levelId
   const result: LevelResult | null = snapshot.completed ? service.result() : null;
 
   return (
-    <main className="min-h-screen px-5 py-8">
-      <div className="mx-auto grid max-w-2xl gap-6">
+    <main className="min-h-dvh pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-6 sm:py-8">
+      <div className="mx-auto grid max-w-2xl gap-5 sm:gap-6">
         <ProgressHeader title={title} topics={topics} current={Math.min(snapshot.currentIndex + 1, snapshot.order.length)} total={snapshot.order.length} />
         {result ? <ResultScreen result={result} onRetry={retry} /> : null}
         {!result && question && attempt ? (
-          <div className="rounded-lg border border-line bg-panel p-5">
+          <div className="rounded-lg border border-line bg-panel p-4 sm:p-5">
             {question.type === "quiz" ? <QuizQuestionView question={question} attempt={attempt} disabled={locked} onAnswer={objectiveAnswer} /> : null}
             {question.type === "flashcard" ? (
               <FlashcardQuestionView
@@ -103,7 +103,7 @@ export function LearningSession({ levelId, title, topics, questions }: { levelId
         ) : null}
         {!result ? (
           <nav className="flex justify-between">
-            <button type="button" disabled={snapshot.currentIndex === 0} onClick={goPrevious} className="rounded-lg border border-line bg-ink px-4 py-3 disabled:cursor-not-allowed disabled:opacity-50">Previous</button>
+            <button type="button" disabled={snapshot.currentIndex === 0} onClick={goPrevious} className="min-h-12 rounded-lg border border-line bg-ink px-5 py-3 disabled:cursor-not-allowed disabled:opacity-50">Previous</button>
           </nav>
         ) : null}
       </div>

@@ -23,7 +23,7 @@ export function ChoiceButton({ id, label, disabled, selected, correct, revealed,
       disabled={disabled}
       aria-pressed={selected}
       onClick={() => onChoose(id)}
-      className={`min-h-14 rounded-lg border px-4 py-3 text-left text-base transition disabled:cursor-not-allowed disabled:opacity-70 ${stateClass}`}
+      className={`min-h-14 rounded-lg border px-4 py-3 text-left text-base leading-6 transition active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70 ${stateClass}`}
     >
       {label}
     </button>
