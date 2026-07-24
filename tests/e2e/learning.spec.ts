@@ -17,6 +17,7 @@ test.describe("learning app shell", () => {
   test("serves a static offline study mode", async ({ page }) => {
     await page.goto("/offline");
     await expect(page.getByRole("heading", { name: "Sonar Products" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Install app" })).toBeVisible();
     await page.getByRole("link", { name: /Product and Vocabulary Foundations/ }).click();
     await expect(page).toHaveURL(/\/offline\/levels\/product-and-vocabulary-foundations/);
     await expect(page.getByRole("heading", { name: "Product and Vocabulary Foundations" })).toBeVisible();
