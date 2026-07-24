@@ -1,0 +1,180 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model LearnerProfile {
+  id             String          @id @default(cuid())
+  displayName    String
+  createdAt      DateTime        @default(now())
+  levelAttempts  LevelAttempt[]
+  progress       LearnerProgress[]
+}
+
+model Topic {
+  id          String       @id @default(cuid())
+  slug        String       @unique
+  title       String
+  description String?
+  levelTopics LevelTopic[]
+}
+
+model Level {
+  id             String          @id @default(cuid())
+  slug           String          @unique
+  title          String
+  description    String?
+  sortOrder      Int             @default(0)
+  levelTopics    LevelTopic[]
+  levelQuestions LevelQuestion[]
+  attempts       LevelAttempt[]
+  progress       LearnerProgress[]
+}
+
+model LevelTopic {
+  levelId String
+  topicId String
+  level   Level  @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  topic   Topic  @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@id([levelId, topicId])
+}
+
+model Question {
+  id              String             @id @default(cuid())
+  type            String
+  prompt          String
+  createdAt       DateTime           @default(now())
+  quizQuestion    QuizQuestion?
+  flashcard       FlashcardQuestion?
+  mindMap         MindMapQuestion?
+  levelQuestions  LevelQuestion[]
+  questionAttempts QuestionAttempt[]
+}
+
+model QuizQuestion {
+  questionId String       @id
+  question   Question     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  choices    QuizChoice[]
+}
+
+model QuizChoice {
+  id              String       @id @default(cuid())
+  quizQuestionId  String
+  label           String
+  isCorrect       Boolean      @default(false)
+  sortOrder       Int
+  quizQuestion    QuizQuestion @relation(fields: [quizQuestionId], references: [questionId], onDelete: Cascade)
+
+  @@unique([quizQuestionId, sortOrder])
+}
+
+model FlashcardQuestion {
+  questionId String   @id
+  front      String
+  back       String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}
+
+model MindMapQuestion {
+  questionId     String          @id
+  layoutMetadata String?
+  question       Question        @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  nodes          MindMapNode[]
+  choices        MindMapChoice[]
+}
+
+model MindMapNode {
+  id                String          @id @default(cuid())
+  mindMapQuestionId String
+  parentNodeId      String?
+  label             String?
+  isTarget          Boolean         @default(false)
+  sortOrder         Int
+  mindMapQuestion   MindMapQuestion @relation(fields: [mindMapQuestionId], references: [questionId], onDelete: Cascade)
+
+  @@unique([mindMapQuestionId, sortOrder])
+}
+
+model MindMapChoice {
+  id                String          @id @default(cuid())
+  mindMapQuestionId String
+  label             String
+  isCorrect         Boolean         @default(false)
+  sortOrder         Int
+  mindMapQuestion   MindMapQuestion @relation(fields: [mindMapQuestionId], references: [questionId], onDelete: Cascade)
+
+  @@unique([mindMapQuestionId, sortOrder])
+}
+
+model LevelQuestion {
+  levelId    String
+  questionId String
+  sortOrder  Int
+  level      Level    @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@id([levelId, questionId])
+  @@unique([levelId, sortOrder])
+}
+
+model LevelAttempt {
+  id               String            @id @default(cuid())
+  learnerProfileId String
+  levelId          String
+  status           String            @default("IN_PROGRESS")
+  questionOrder    String
+  startedAt        DateTime          @default(now())
+  completedAt      DateTime?
+  learnerProfile   LearnerProfile    @relation(fields: [learnerProfileId], references: [id], onDelete: Cascade)
+  level            Level             @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  questionAttempts QuestionAttempt[]
+}
+
+model QuestionAttempt {
+  id              String             @id @default(cuid())
+  levelAttemptId  String
+  questionId      String
+  status          String             @default("UNANSWERED")
+  finalStatus     String             @default("IN_PROGRESS")
+  errorCount      Int                @default(0)
+  eventuallyCorrect Boolean          @default(false)
+  sequencePosition Int
+  startedAt       DateTime           @default(now())
+  firstAnsweredAt DateTime?
+  completedAt     DateTime?
+  levelAttempt    LevelAttempt       @relation(fields: [levelAttemptId], references: [id], onDelete: Cascade)
+  question        Question           @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  selections      AnswerSelection[]
+
+  @@unique([levelAttemptId, questionId])
+  @@unique([levelAttemptId, sequencePosition])
+}
+
+model AnswerSelection {
+  id                String          @id @default(cuid())
+  questionAttemptId String
+  answerId          String
+  label             String?
+  isCorrect         Boolean
+  selectedAt        DateTime        @default(now())
+  questionAttempt   QuestionAttempt @relation(fields: [questionAttemptId], references: [id], onDelete: Cascade)
+
+  @@unique([questionAttemptId, answerId])
+}
+
+model LearnerProgress {
+  learnerProfileId String
+  levelId          String
+  bestStatus       String             @default("IN_PROGRESS")
+  bestPercentage   Int                @default(0)
+  lastAttemptedAt  DateTime?
+  learnerProfile   LearnerProfile     @relation(fields: [learnerProfileId], references: [id], onDelete: Cascade)
+  level            Level              @relation(fields: [levelId], references: [id], onDelete: Cascade)
+
+  @@id([learnerProfileId, levelId])
+}

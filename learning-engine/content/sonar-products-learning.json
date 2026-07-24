@@ -1,0 +1,916 @@
+{
+  "topics": [
+    {
+      "slug": "sonar-company",
+      "title": "Sonar Company",
+      "description": "Sonar mission, strategy, values, and open-source roots."
+    },
+    {
+      "slug": "sonarqube-product-family",
+      "title": "SonarQube Product Family",
+      "description": "SonarQube Cloud, Server, Community Build, for IDE, and Connected Mode."
+    },
+    {
+      "slug": "code-quality-foundations",
+      "title": "Code Quality Foundations",
+      "description": "Rules, issues, maintainability, reliability, security, and quality standards."
+    },
+    {
+      "slug": "developer-workflow",
+      "title": "Developer Workflow",
+      "description": "IDE, pull request, branch, CI/CD, and new-code workflows."
+    },
+    {
+      "slug": "application-security",
+      "title": "Application Security",
+      "description": "SAST, secrets, IaC, SCA, Advanced Security, and supply-chain concepts."
+    },
+    {
+      "slug": "ai-code-verification",
+      "title": "AI Code Verification",
+      "description": "AI-generated code assurance, agentic verification, and zero-trust review."
+    },
+    {
+      "slug": "agent-centric-development",
+      "title": "Agent-Centric Development",
+      "description": "Guide, Verify, Solve, Sonar Vortex, MCP Server, CLI, and remediation agents."
+    },
+    {
+      "slug": "customer-success-engineering",
+      "title": "Customer Success Engineering",
+      "description": "CSE responsibilities, adoption, health, maturity, value, and account signals."
+    }
+  ],
+  "levels": [
+    {
+      "slug": "product-and-vocabulary-foundations",
+      "title": "Product and Vocabulary Foundations",
+      "description": "Describe Sonar, recognise the main products, and understand basic quality and security vocabulary.",
+      "topicSlugs": [
+        "sonar-company",
+        "sonarqube-product-family",
+        "code-quality-foundations",
+        "application-security",
+        "ai-code-verification"
+      ],
+      "questions": [
+        {
+          "type": "quiz",
+          "key": "l1-sonar-primary-purpose",
+          "prompt": "What is SonarQube primarily used for?",
+          "choices": [
+            {
+              "key": "code-verification",
+              "label": "Automated code quality and security verification",
+              "isCorrect": true
+            },
+            {
+              "key": "runtime-hosting",
+              "label": "Production application hosting and autoscaling",
+              "isCorrect": false
+            },
+            {
+              "key": "ticket-management",
+              "label": "Customer support ticket routing",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l1-flash-sonar-in-one-sentence",
+          "prompt": "Sonar in one sentence",
+          "front": "How would you describe Sonar to a new customer?",
+          "back": "Sonar helps teams verify that code is reliable, maintainable, and secure before it reaches production. It applies automated, explainable analysis across developer and AI-generated code."
+        },
+        {
+          "type": "quiz",
+          "key": "l1-product-ide-feedback",
+          "prompt": "Which product gives feedback inside the editor?",
+          "choices": [
+            {
+              "key": "sonarqube-for-ide",
+              "label": "SonarQube for IDE",
+              "isCorrect": true
+            },
+            {
+              "key": "sonarqube-advanced-security",
+              "label": "SonarQube Advanced Security",
+              "isCorrect": false
+            },
+            {
+              "key": "sonarsweep",
+              "label": "SonarSweep",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l1-flash-connected-mode",
+          "prompt": "Connected Mode",
+          "front": "What does Connected Mode add to SonarQube for IDE?",
+          "back": "Connected Mode binds the IDE workspace to a SonarQube project. It synchronizes team rules, project settings, issue statuses, and quality-gate notifications into the developer's editor."
+        },
+        {
+          "type": "quiz",
+          "key": "l1-cloud-operating-model",
+          "prompt": "Which product is Sonar-managed SaaS?",
+          "choices": [
+            {
+              "key": "sonarqube-cloud",
+              "label": "SonarQube Cloud",
+              "isCorrect": true
+            },
+            {
+              "key": "sonarqube-server",
+              "label": "SonarQube Server",
+              "isCorrect": false
+            },
+            {
+              "key": "community-build",
+              "label": "SonarQube Community Build",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "quiz",
+          "key": "l1-server-operating-model",
+          "prompt": "Which product is self-managed by the customer?",
+          "choices": [
+            {
+              "key": "sonarqube-server",
+              "label": "SonarQube Server",
+              "isCorrect": true
+            },
+            {
+              "key": "sonarqube-cloud",
+              "label": "SonarQube Cloud",
+              "isCorrect": false
+            },
+            {
+              "key": "ai-code-assurance",
+              "label": "AI Code Assurance",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l1-flash-community-build",
+          "prompt": "Community Build",
+          "front": "What is SonarQube Community Build?",
+          "back": "SonarQube Community Build is the free, open-source self-managed SonarQube option. It is useful for starting with core code quality workflows, but it should not be confused with paid Server editions."
+        },
+        {
+          "type": "quiz",
+          "key": "l1-static-analysis-definition",
+          "prompt": "What does static analysis inspect?",
+          "choices": [
+            {
+              "key": "source-code",
+              "label": "Source code without running the application",
+              "isCorrect": true
+            },
+            {
+              "key": "live-traffic",
+              "label": "Live production traffic and user sessions",
+              "isCorrect": false
+            },
+            {
+              "key": "sales-data",
+              "label": "Account usage and renewal data",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l1-flash-rules-and-issues",
+          "prompt": "Rules and issues",
+          "front": "What is the relationship between a rule and an issue?",
+          "back": "A rule is a check; an issue is a finding raised when code violates that check. Quality Profiles decide which rules are active during analysis."
+        },
+        {
+          "type": "quiz",
+          "key": "l1-bug-category",
+          "prompt": "Which issue category maps to reliability?",
+          "choices": [
+            {
+              "key": "bug",
+              "label": "Bug",
+              "isCorrect": true
+            },
+            {
+              "key": "code-smell",
+              "label": "Code smell",
+              "isCorrect": false
+            },
+            {
+              "key": "security-hotspot",
+              "label": "Security Hotspot",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "quiz",
+          "key": "l1-code-smell-category",
+          "prompt": "Which issue category maps to maintainability?",
+          "choices": [
+            {
+              "key": "code-smell",
+              "label": "Code smell",
+              "isCorrect": true
+            },
+            {
+              "key": "vulnerability",
+              "label": "Vulnerability",
+              "isCorrect": false
+            },
+            {
+              "key": "bug",
+              "label": "Bug",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l1-flash-vulnerability",
+          "prompt": "Vulnerability",
+          "front": "What is a vulnerability in Sonar vocabulary?",
+          "back": "A vulnerability is a security issue that can expose software to attack. It is different from a Security Hotspot, which requires human review before being treated as a problem."
+        },
+        {
+          "type": "quiz",
+          "key": "l1-security-hotspot-purpose",
+          "prompt": "What does a Security Hotspot require?",
+          "choices": [
+            {
+              "key": "human-review",
+              "label": "Human review of security-sensitive code",
+              "isCorrect": true
+            },
+            {
+              "key": "automatic-merge",
+              "label": "Automatic merge after analysis",
+              "isCorrect": false
+            },
+            {
+              "key": "dependency-upgrade",
+              "label": "Mandatory dependency upgrade",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l1-flash-quality-gate",
+          "prompt": "Quality Gate",
+          "front": "What is a Quality Gate?",
+          "back": "A Quality Gate is a pass/fail policy based on conditions such as issues, ratings, coverage, or duplication. It tells teams whether code meets the required standard for merge or release."
+        },
+        {
+          "type": "quiz",
+          "key": "l1-quality-profile-purpose",
+          "prompt": "What does a Quality Profile define?",
+          "choices": [
+            {
+              "key": "active-rules",
+              "label": "The active rules for a language",
+              "isCorrect": true
+            },
+            {
+              "key": "release-thresholds",
+              "label": "The pass/fail thresholds after analysis",
+              "isCorrect": false
+            },
+            {
+              "key": "hosting-region",
+              "label": "The hosting region for a project",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l1-flash-ai-code-verification",
+          "prompt": "AI-generated code",
+          "front": "Why does AI-generated code still need verification?",
+          "back": "AI-generated code can still contain bugs, vulnerabilities, and maintainability issues. Sonar's position is that independent verification is needed because generation and review should not be the same unchecked process."
+        },
+        {
+          "type": "quiz",
+          "key": "l1-ai-code-assurance-basic",
+          "prompt": "What is AI Code Assurance for?",
+          "choices": [
+            {
+              "key": "ai-project-standards",
+              "label": "Applying stronger standards to projects with AI code",
+              "isCorrect": true
+            },
+            {
+              "key": "model-training",
+              "label": "Training a new language model from scratch",
+              "isCorrect": false
+            },
+            {
+              "key": "ide-theme",
+              "label": "Changing the IDE visual theme",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l1-flash-sonar-way",
+          "prompt": "Sonar way",
+          "front": "What is Sonar way?",
+          "back": "Sonar way is Sonar's built-in recommended default for quality profiles and quality gates. It gives most teams a practical starting standard before customization."
+        }
+      ]
+    },
+    {
+      "slug": "workflow-governance-and-adoption",
+      "title": "Development Workflow, Governance and Adoption",
+      "description": "Apply Sonar concepts across IDE, CI/CD, pull requests, new code, quality standards, and customer adoption.",
+      "topicSlugs": [
+        "sonarqube-product-family",
+        "developer-workflow",
+        "code-quality-foundations",
+        "application-security",
+        "customer-success-engineering"
+      ],
+      "questions": [
+        {
+          "type": "quiz",
+          "key": "l2-connected-mode-benefit",
+          "prompt": "A team wants identical IDE and server rules. What helps?",
+          "choices": [
+            {
+              "key": "connected-mode",
+              "label": "Connected Mode",
+              "isCorrect": true
+            },
+            {
+              "key": "new-code-definition",
+              "label": "New Code Definition",
+              "isCorrect": false
+            },
+            {
+              "key": "software-bill-of-materials",
+              "label": "Software Bill of Materials",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l2-flash-ide-to-ci",
+          "prompt": "IDE to CI",
+          "front": "How should a CSE explain IDE feedback versus CI analysis?",
+          "back": "IDE feedback helps developers fix issues before commit. CI analysis provides centralized verification, history, and enforceable quality gates for branches and pull requests."
+        },
+        {
+          "type": "quiz",
+          "key": "l2-pr-analysis-purpose",
+          "prompt": "What does pull-request analysis focus on?",
+          "choices": [
+            {
+              "key": "changed-code",
+              "label": "Issues introduced by the pull request",
+              "isCorrect": true
+            },
+            {
+              "key": "all-company-code",
+              "label": "Every repository in the company",
+              "isCorrect": false
+            },
+            {
+              "key": "support-tickets",
+              "label": "Open customer support tickets",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l2-flash-pr-decoration",
+          "prompt": "Pull-request decoration",
+          "front": "Why is pull-request decoration useful?",
+          "back": "It brings Sonar findings and Quality Gate status into the repository platform where developers already review code. This reduces context switching and makes governance visible before merge."
+        },
+        {
+          "type": "quiz",
+          "key": "l2-profile-versus-gate",
+          "prompt": "Which pair is correctly distinguished?",
+          "choices": [
+            {
+              "key": "profile-rules-gate-thresholds",
+              "label": "Profile selects rules; gate checks thresholds",
+              "isCorrect": true
+            },
+            {
+              "key": "profile-hosts-gate-edits",
+              "label": "Profile hosts code; gate edits code",
+              "isCorrect": false
+            },
+            {
+              "key": "profile-sales-gate-support",
+              "label": "Profile tracks sales; gate routes support",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "quiz",
+          "key": "l2-new-code-definition-use",
+          "prompt": "What does a New Code Definition configure?",
+          "choices": [
+            {
+              "key": "new-code-scope",
+              "label": "Which changes count as new code",
+              "isCorrect": true
+            },
+            {
+              "key": "active-language-rules",
+              "label": "Which rules are active per language",
+              "isCorrect": false
+            },
+            {
+              "key": "dependency-license",
+              "label": "Which dependency licenses are allowed",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l2-flash-clean-as-you-code",
+          "prompt": "Clean as You Code",
+          "front": "Why is Clean as You Code practical for legacy codebases?",
+          "back": "It focuses strict standards on new or changed code instead of demanding full historical cleanup immediately. Teams improve the codebase incrementally while preventing new problems."
+        },
+        {
+          "type": "quiz",
+          "key": "l2-quality-gate-failure",
+          "prompt": "A PR fails the Quality Gate. What happened?",
+          "choices": [
+            {
+              "key": "condition-failed",
+              "label": "At least one gate condition was not met",
+              "isCorrect": true
+            },
+            {
+              "key": "rules-disabled",
+              "label": "All rules were disabled automatically",
+              "isCorrect": false
+            },
+            {
+              "key": "server-uninstalled",
+              "label": "The SonarQube server was uninstalled",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l2-flash-coverage",
+          "prompt": "Coverage",
+          "front": "How should a CSE explain code coverage?",
+          "back": "Coverage estimates how much code is exercised by tests. It is useful for reliability discussions, but high coverage alone does not prove the code is bug-free."
+        },
+        {
+          "type": "quiz",
+          "key": "l2-cloud-versus-server",
+          "prompt": "A customer needs self-managed data control. Which fits best?",
+          "choices": [
+            {
+              "key": "sonarqube-server",
+              "label": "SonarQube Server",
+              "isCorrect": true
+            },
+            {
+              "key": "sonarqube-cloud",
+              "label": "SonarQube Cloud",
+              "isCorrect": false
+            },
+            {
+              "key": "sonarqube-for-ide",
+              "label": "SonarQube for IDE alone",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "quiz",
+          "key": "l2-saas-fast-onboarding",
+          "prompt": "A cloud-native team wants low operations. Which fits best?",
+          "choices": [
+            {
+              "key": "sonarqube-cloud",
+              "label": "SonarQube Cloud",
+              "isCorrect": true
+            },
+            {
+              "key": "community-build",
+              "label": "SonarQube Community Build",
+              "isCorrect": false
+            },
+            {
+              "key": "foundation-agent",
+              "label": "Sonar Foundation Agent",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l2-flash-duplication",
+          "prompt": "Duplication",
+          "front": "Why does Sonar track duplication?",
+          "back": "Duplicated code can increase maintenance cost because the same logic may need to be fixed in several places. It is a code-health metric, not a direct security finding."
+        },
+        {
+          "type": "quiz",
+          "key": "l2-adoption-signal",
+          "prompt": "Which signal best indicates adoption progress?",
+          "choices": [
+            {
+              "key": "teams-using-pr-gates",
+              "label": "Teams consistently using PR analysis and gates",
+              "isCorrect": true
+            },
+            {
+              "key": "one-demo-attended",
+              "label": "One stakeholder attended a demo",
+              "isCorrect": false
+            },
+            {
+              "key": "pricing-page-opened",
+              "label": "A user opened the pricing page",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l2-flash-technical-success-plan",
+          "prompt": "Technical success plan",
+          "front": "What should a technical success plan connect?",
+          "back": "It should connect the customer's business priorities to concrete technical actions, such as onboarding projects, enabling PR analysis, adopting quality gates, and measuring outcomes."
+        },
+        {
+          "type": "quiz",
+          "key": "l2-customer-health-risk",
+          "prompt": "Which is a likely customer-health risk signal?",
+          "choices": [
+            {
+              "key": "quality-gates-ignored",
+              "label": "Quality Gate failures are ignored for releases",
+              "isCorrect": true
+            },
+            {
+              "key": "champion-engaged",
+              "label": "A technical champion books enablement",
+              "isCorrect": false
+            },
+            {
+              "key": "coverage-improves",
+              "label": "New-code coverage steadily improves",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l2-flash-time-to-value",
+          "prompt": "Time to value",
+          "front": "What does time to value mean for Sonar adoption?",
+          "back": "Time to value is how quickly the customer sees useful outcomes from Sonar. Examples include visible PR feedback, fewer new issues, or clear quality-gate governance."
+        },
+        {
+          "type": "quiz",
+          "key": "l2-onboarding-priority",
+          "prompt": "What is the best early onboarding goal?",
+          "choices": [
+            {
+              "key": "analyze-real-project",
+              "label": "Analyze a real project and review actionable findings",
+              "isCorrect": true
+            },
+            {
+              "key": "customize-every-rule",
+              "label": "Customize every rule before first analysis",
+              "isCorrect": false
+            },
+            {
+              "key": "delay-developer-access",
+              "label": "Delay developer access until renewal",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l2-flash-cse-versus-support",
+          "prompt": "CSE versus Support",
+          "front": "How is a Sonar CSE different from technical support?",
+          "back": "A CSE is a proactive technical advisor focused on adoption, maturity, health, and outcomes. Support usually reacts to specific incidents or product issues."
+        }
+      ]
+    },
+    {
+      "slug": "agentic-products-and-cse-reasoning",
+      "title": "Agentic Products and CSE Reasoning",
+      "description": "Explain Sonar's AI-code strategy and reason through realistic customer situations.",
+      "topicSlugs": [
+        "agent-centric-development",
+        "ai-code-verification",
+        "application-security",
+        "customer-success-engineering",
+        "sonar-company"
+      ],
+      "questions": [
+        {
+          "type": "quiz",
+          "key": "l3-acdc-stages",
+          "prompt": "Which sequence matches Sonar's AC/DC framing?",
+          "choices": [
+            {
+              "key": "guide-verify-solve",
+              "label": "Guide, Verify, Solve",
+              "isCorrect": true
+            },
+            {
+              "key": "build-host-bill",
+              "label": "Build, Host, Bill",
+              "isCorrect": false
+            },
+            {
+              "key": "sell-support-renew",
+              "label": "Sell, Support, Renew",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l3-flash-zero-trust-verification",
+          "prompt": "Zero-trust verification",
+          "front": "What does zero-trust verification mean for AI-generated code?",
+          "back": "It means the code generator should not be trusted to grade its own work. Sonar positions independent, deterministic verification as a separate check on AI-generated output."
+        },
+        {
+          "type": "quiz",
+          "key": "l3-vortex-positioning",
+          "prompt": "A customer wants agent-loop guidance and verification. Which product fits?",
+          "choices": [
+            {
+              "key": "sonar-vortex",
+              "label": "Sonar Vortex",
+              "isCorrect": true
+            },
+            {
+              "key": "quality-profile",
+              "label": "Quality Profile",
+              "isCorrect": false
+            },
+            {
+              "key": "sonarqube-community-build",
+              "label": "SonarQube Community Build",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l3-flash-sonar-vortex",
+          "prompt": "Sonar Vortex",
+          "front": "What customer problem does Sonar Vortex address?",
+          "back": "Sonar Vortex helps AI coding agents use project-specific context and verify output inside the agent loop. It targets agentic code quality before issues reach pull request or CI review."
+        },
+        {
+          "type": "quiz",
+          "key": "l3-remediation-agent-stage",
+          "prompt": "Which AC/DC stage does Remediation Agent support?",
+          "choices": [
+            {
+              "key": "solve",
+              "label": "Solve",
+              "isCorrect": true
+            },
+            {
+              "key": "guide",
+              "label": "Guide only",
+              "isCorrect": false
+            },
+            {
+              "key": "billing",
+              "label": "Billing",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "quiz",
+          "key": "l3-mcp-server-purpose",
+          "prompt": "What does the SonarQube MCP Server connect?",
+          "choices": [
+            {
+              "key": "ai-tools-to-sonarqube",
+              "label": "AI tools to SonarQube context and actions",
+              "isCorrect": true
+            },
+            {
+              "key": "browsers-to-css",
+              "label": "Browsers to CSS build pipelines",
+              "isCorrect": false
+            },
+            {
+              "key": "salesforce-to-invoices",
+              "label": "Salesforce records to invoices",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l3-flash-context-augmentation",
+          "prompt": "Context Augmentation",
+          "front": "How should you describe Context Augmentation in 2026?",
+          "back": "Context Augmentation provides repo-aware architecture, standards, and quality context to AI agents. Current Sonar sources describe it as included in Sonar Vortex, so its standalone terminology is time-sensitive."
+        },
+        {
+          "type": "quiz",
+          "key": "l3-gitar-use-case",
+          "prompt": "Which use case best fits Gitar?",
+          "choices": [
+            {
+              "key": "ai-pr-review",
+              "label": "AI-native pull-request review and fix suggestions",
+              "isCorrect": true
+            },
+            {
+              "key": "dependency-inventory",
+              "label": "Software bill of materials generation",
+              "isCorrect": false
+            },
+            {
+              "key": "self-managed-scanner",
+              "label": "Self-managed SonarQube database hosting",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l3-flash-sonarsweep",
+          "prompt": "SonarSweep",
+          "front": "Why should SonarSweep be discussed carefully?",
+          "back": "SonarSweep is presented as early access or private beta around training-data quality and embedded context for coding LLMs. A CSE candidate should avoid positioning it like a mature, generally available SonarQube product."
+        },
+        {
+          "type": "quiz",
+          "key": "l3-advanced-security-sca",
+          "prompt": "Which capability is added by Advanced Security?",
+          "choices": [
+            {
+              "key": "sca",
+              "label": "Software Composition Analysis for dependencies",
+              "isCorrect": true
+            },
+            {
+              "key": "ide-theme",
+              "label": "Custom IDE color themes",
+              "isCorrect": false
+            },
+            {
+              "key": "ticket-routing",
+              "label": "Customer support queue routing",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "quiz",
+          "key": "l3-sast-versus-sca",
+          "prompt": "A customer asks about vulnerable dependencies. Which concept fits?",
+          "choices": [
+            {
+              "key": "sca",
+              "label": "SCA",
+              "isCorrect": true
+            },
+            {
+              "key": "quality-profile",
+              "label": "Quality Profile",
+              "isCorrect": false
+            },
+            {
+              "key": "cognitive-complexity",
+              "label": "Cognitive complexity",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l3-flash-advanced-sast",
+          "prompt": "Advanced SAST",
+          "front": "How does advanced SAST extend standard taint analysis?",
+          "back": "Advanced SAST extends data-flow analysis across dependency boundaries. It helps find vulnerabilities caused by interactions between first-party code and third-party libraries."
+        },
+        {
+          "type": "quiz",
+          "key": "l3-risk-signal",
+          "prompt": "Which scenario is the strongest CSE risk signal?",
+          "choices": [
+            {
+              "key": "ai-code-bypasses-gates",
+              "label": "AI-generated code bypasses quality gates before release",
+              "isCorrect": true
+            },
+            {
+              "key": "champion-requests-review",
+              "label": "A champion requests an outcome review",
+              "isCorrect": false
+            },
+            {
+              "key": "teams-expand-pr-analysis",
+              "label": "More teams adopt pull-request analysis",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l3-flash-maturity-assessment",
+          "prompt": "Maturity assessment",
+          "front": "What should a Sonar maturity assessment examine?",
+          "back": "It should examine how consistently the customer uses Sonar across IDE, CI/CD, PR review, quality gates, security workflows, and executive reporting. The goal is to identify practical next steps, not to score customers for its own sake."
+        },
+        {
+          "type": "quiz",
+          "key": "l3-opportunity-signal",
+          "prompt": "Which is the clearest expansion opportunity signal?",
+          "choices": [
+            {
+              "key": "advanced-security-need",
+              "label": "Security leaders need dependency risk and SBOM visibility",
+              "isCorrect": true
+            },
+            {
+              "key": "single-login",
+              "label": "One developer logs in once",
+              "isCorrect": false
+            },
+            {
+              "key": "old-issue-accepted",
+              "label": "A legacy issue is accepted as false positive",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l3-flash-sales-handoff",
+          "prompt": "Qualified Sales handoff",
+          "front": "When should a CSE hand an opportunity to Sales?",
+          "back": "A CSE should hand off when a signal is tied to a clear customer need, stakeholder, value hypothesis, and likely commercial motion. The handoff should be qualified, not just a vague mention of interest."
+        },
+        {
+          "type": "quiz",
+          "key": "l3-cse-best-follow-up",
+          "prompt": "A VP worries AI code increases outages. Best CSE follow-up?",
+          "choices": [
+            {
+              "key": "ask-governance-workflow",
+              "label": "Ask how AI code is verified before merge today",
+              "isCorrect": true
+            },
+            {
+              "key": "promise-zero-defects",
+              "label": "Promise Sonar will eliminate all defects",
+              "isCorrect": false
+            },
+            {
+              "key": "ignore-ai-context",
+              "label": "Move directly to pricing discussion",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "type": "flashcard",
+          "key": "l3-flash-cse-sales-engineering",
+          "prompt": "CSE versus Sales Engineering",
+          "front": "How is CSE different from Sales Engineering after purchase?",
+          "back": "Sales Engineering usually supports pre-sale technical evaluation. CSE works post-sale to drive adoption, maturity, customer health, and measurable outcomes while coordinating qualified commercial signals."
+        }
+      ]
+    }
+  ]
+}
