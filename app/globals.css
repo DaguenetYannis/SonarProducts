@@ -36,6 +36,23 @@ a {
   touch-action: manipulation;
 }
 
+progress {
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  background: #2a3444;
+}
+
+progress::-webkit-progress-value {
+  background: #65d6ad;
+  transition: width 150ms ease;
+}
+
+progress::-moz-progress-bar {
+  background: #65d6ad;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

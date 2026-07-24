@@ -22,7 +22,7 @@ export function MindMapQuestionView({ question, attempt, disabled, onAnswer }: M
           {question.nodes.map((node) => (
             <div key={node.id} className={`rounded-lg border px-4 py-3 ${node.isTarget ? "border-dashed border-good" : "border-line"}`}>
               <span className="text-sm text-slate-400">{node.parentId ? "Child" : "Parent"}</span>
-              <p className="mt-1 text-lg leading-7">{node.isTarget ? (targetFilled ? correctChoice?.label : "Empty slot") : node.label}</p>
+              <p className="mt-1 text-lg leading-7">{getNodeLabel(node.label, node.isTarget, targetFilled, correctChoice?.label)}</p>
             </div>
           ))}
         </div>
@@ -44,4 +44,10 @@ export function MindMapQuestionView({ question, attempt, disabled, onAnswer }: M
       <output className="text-sm text-slate-300">{attempt.status === "first_error" ? "That slot is still open." : " "}</output>
     </section>
   );
+}
+
+function getNodeLabel(label: string | null, isTarget: boolean, targetFilled: boolean, correctLabel: string | undefined) {
+  if (!isTarget) return label;
+  if (targetFilled) return correctLabel;
+  return "Empty slot";
 }

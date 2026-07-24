@@ -17,9 +17,9 @@ export class DeterministicQuestionOrderingService implements QuestionOrderingSer
     return attempts.find((order) => !previousOrders.some((previous) => sameOrder(previous, order))) ?? attempts[0];
   }
 
-  private shuffle(values: string[], seed: number): string[] {
+  private shuffle(values: string[], seed = 1): string[] {
     const result = [...values];
-    let state = seed || 1;
+    let state = seed;
     for (let index = result.length - 1; index > 0; index -= 1) {
       state = (state * 1664525 + 1013904223) % 4294967296;
       const swapIndex = state % (index + 1);

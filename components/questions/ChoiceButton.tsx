@@ -11,11 +11,7 @@ type ChoiceButtonProps = Readonly<{
 }>;
 
 export function ChoiceButton({ id, label, disabled, selected, correct, revealed, onChoose }: ChoiceButtonProps) {
-  const stateClass = revealed && correct
-    ? "border-good bg-good/10"
-    : selected
-      ? "border-warn bg-warn/10"
-      : "border-line bg-ink hover:border-slate-400";
+  const stateClass = getChoiceStateClass({ revealed, correct, selected });
 
   return (
     <button
@@ -28,4 +24,10 @@ export function ChoiceButton({ id, label, disabled, selected, correct, revealed,
       {label}
     </button>
   );
+}
+
+function getChoiceStateClass({ revealed, correct, selected }: Pick<ChoiceButtonProps, "revealed" | "correct" | "selected">) {
+  if (revealed && correct) return "border-good bg-good/10";
+  if (selected) return "border-warn bg-warn/10";
+  return "border-line bg-ink hover:border-slate-400";
 }
