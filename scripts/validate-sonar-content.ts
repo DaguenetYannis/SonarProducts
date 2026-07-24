@@ -158,12 +158,11 @@ function isGrouped(types: string[]): boolean {
 
 if (process.argv[1]?.endsWith("validate-sonar-content.ts")) {
   const filePath = process.argv[2] ?? "content/sonar-products-learning.json";
-  validateSonarContentFile(filePath)
-    .then((result) => {
-      console.log(`Valid Sonar content: ${result.totalQuestions} questions.`);
-    })
-    .catch((error: unknown) => {
-      console.error(error instanceof Error ? error.message : String(error));
-      process.exit(1);
-    });
+  try {
+    const result = await validateSonarContentFile(filePath);
+    console.log(`Valid Sonar content: ${result.totalQuestions} questions.`);
+  } catch (error: unknown) {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exit(1);
+  }
 }

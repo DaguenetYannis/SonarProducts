@@ -18,9 +18,7 @@ export function ProgressHeader({ title, topics, current, total }: ProgressHeader
         </div>
         <p className="w-fit rounded-full border border-line px-3 py-1 text-sm text-slate-300">{Math.min(current, total)} / {total}</p>
       </div>
-      <div className="h-2 overflow-hidden rounded-full bg-line" aria-label="Level progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={percent}>
-        <div className="h-full bg-good transition-all" style={{ width: `${percent}%` }} />
-      </div>
+      <progress className="h-2 w-full overflow-hidden rounded-full bg-line" aria-label="Level progress" max={100} value={percent} />
     </header>
   );
 }

@@ -15,7 +15,7 @@ export interface LevelSessionInput {
 }
 
 export class LevelSessionService {
-  private snapshot: LevelSessionSnapshot;
+  private readonly snapshot: LevelSessionSnapshot;
   private readonly questions: Map<string, LearningQuestion>;
   private readonly evaluator = new ObjectiveAnswerEvaluator();
   private readonly tracker = new InMemoryAttemptTracker();
