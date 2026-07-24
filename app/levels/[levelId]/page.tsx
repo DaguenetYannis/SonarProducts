@@ -2,7 +2,11 @@ import Link from "next/link";
 import { LearningSession } from "@/components/learning/LearningSession";
 import { PrismaLearningRepository } from "@/infrastructure/repositories/PrismaLearningRepository";
 
-export default async function LevelPage({ params }: { params: Promise<{ levelId: string }> }) {
+type LevelPageProps = Readonly<{
+  params: Promise<{ levelId: string }>;
+}>;
+
+export default async function LevelPage({ params }: LevelPageProps) {
   const { levelId } = await params;
   const level = await new PrismaLearningRepository().getLevelContent(levelId);
 

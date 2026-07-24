@@ -3,12 +3,14 @@
 import type { MindMapQuestion, QuestionAttemptState } from "@/domain/entities/question";
 import { ChoiceButton } from "@/components/questions/ChoiceButton";
 
-export function MindMapQuestionView({ question, attempt, disabled, onAnswer }: {
+type MindMapQuestionViewProps = Readonly<{
   question: MindMapQuestion;
   attempt: QuestionAttemptState;
   disabled: boolean;
   onAnswer: (answerId: string) => void;
-}) {
+}>;
+
+export function MindMapQuestionView({ question, attempt, disabled, onAnswer }: MindMapQuestionViewProps) {
   const correctChoice = question.choices.find((choice) => choice.isCorrect);
   const targetFilled = attempt.eventuallyCorrect || Boolean(attempt.revealedAnswerId);
 
@@ -39,7 +41,7 @@ export function MindMapQuestionView({ question, attempt, disabled, onAnswer }: {
           />
         ))}
       </div>
-      <p role="status" className="text-sm text-slate-300">{attempt.status === "first_error" ? "That slot is still open." : " "}</p>
+      <output className="text-sm text-slate-300">{attempt.status === "first_error" ? "That slot is still open." : " "}</output>
     </section>
   );
 }

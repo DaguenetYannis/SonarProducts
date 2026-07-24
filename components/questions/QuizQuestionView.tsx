@@ -3,12 +3,18 @@
 import type { QuizQuestion, QuestionAttemptState } from "@/domain/entities/question";
 import { ChoiceButton } from "@/components/questions/ChoiceButton";
 
-export function QuizQuestionView({ question, attempt, disabled, onAnswer }: {
+type QuizQuestionViewProps = Readonly<{
   question: QuizQuestion;
   attempt: QuestionAttemptState;
   disabled: boolean;
   onAnswer: (answerId: string) => void;
-}) {
+}>;
+
+type StatusTextProps = Readonly<{
+  attempt: QuestionAttemptState;
+}>;
+
+export function QuizQuestionView({ question, attempt, disabled, onAnswer }: QuizQuestionViewProps) {
   return (
     <section className="grid gap-5" aria-labelledby="quiz-prompt">
       <h2 id="quiz-prompt" className="text-2xl font-semibold leading-tight">{question.prompt}</h2>
@@ -31,9 +37,9 @@ export function QuizQuestionView({ question, attempt, disabled, onAnswer }: {
   );
 }
 
-function StatusText({ attempt }: { attempt: QuestionAttemptState }) {
-  if (attempt.status === "first_error") return <p role="status" className="text-sm text-warn">Try once more.</p>;
-  if (attempt.status === "completed" && attempt.eventuallyCorrect) return <p role="status" className="text-sm text-good">Correct.</p>;
-  if (attempt.status === "completed" && !attempt.eventuallyCorrect) return <p role="status" className="text-sm text-bad">Answer revealed.</p>;
-  return <p role="status" className="sr-only">Question active</p>;
+function StatusText({ attempt }: StatusTextProps) {
+  if (attempt.status === "first_error") return <output className="text-sm text-warn">Try once more.</output>;
+  if (attempt.status === "completed" && attempt.eventuallyCorrect) return <output className="text-sm text-good">Correct.</output>;
+  if (attempt.status === "completed" && !attempt.eventuallyCorrect) return <output className="text-sm text-bad">Answer revealed.</output>;
+  return <output className="sr-only">Question active</output>;
 }
