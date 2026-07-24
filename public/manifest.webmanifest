@@ -2,7 +2,7 @@
   "name": "Sonar Products Learning",
   "short_name": "Sonar",
   "description": "Study Sonar products and CSE interview scenarios from a mobile-friendly learning app.",
-  "start_url": "/",
+  "start_url": "/offline",
   "scope": "/",
   "display": "standalone",
   "background_color": "#090b10",
