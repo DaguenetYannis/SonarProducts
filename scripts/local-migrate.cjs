@@ -5,7 +5,8 @@ const Database = require("better-sqlite3");
 
 const reset = process.argv.includes("--reset");
 const dbPath = join(process.cwd(), "prisma", "dev.db");
-const migrationPath = join(process.cwd(), "prisma", "migrations", "20260724000000_initial", "migration.sql");
+const migrationName = "20260724000000_initial";
+const migrationPath = join(process.cwd(), "prisma", "migrations", migrationName, "migration.sql");
 
 if (reset) {
   rmSync(dbPath, { force: true });
@@ -18,7 +19,6 @@ const db = new Database(dbPath);
 db.pragma("foreign_keys = ON");
 db.exec("CREATE TABLE IF NOT EXISTS _prisma_migrations (id TEXT NOT NULL PRIMARY KEY, migration_name TEXT NOT NULL, finished_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)");
 
-const migrationName = "20260724000000_initial";
 const alreadyApplied = db.prepare("SELECT id FROM _prisma_migrations WHERE migration_name = ?").get(migrationName);
 
 if (!alreadyApplied) {

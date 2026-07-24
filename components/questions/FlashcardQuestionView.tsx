@@ -2,14 +2,16 @@
 
 import type { FlashcardQuestion, QuestionAttemptState } from "@/domain/entities/question";
 
-export function FlashcardQuestionView({ question, attempt, disabled, onReveal, onKnown, onReview }: {
+type FlashcardQuestionViewProps = Readonly<{
   question: FlashcardQuestion;
   attempt: QuestionAttemptState;
   disabled: boolean;
   onReveal: () => void;
   onKnown: () => void;
   onReview: () => void;
-}) {
+}>;
+
+export function FlashcardQuestionView({ question, attempt, disabled, onReveal, onKnown, onReview }: FlashcardQuestionViewProps) {
   return (
     <section className="grid gap-5" aria-labelledby="flashcard-prompt">
       <h2 id="flashcard-prompt" className="text-2xl font-semibold leading-tight">{question.prompt}</h2>
@@ -27,7 +29,7 @@ export function FlashcardQuestionView({ question, attempt, disabled, onReveal, o
           <button type="button" disabled={disabled} onClick={onReview} className="min-h-12 rounded-lg border border-warn bg-warn/10 px-4 py-3 font-medium">Review again</button>
         </div>
       ) : null}
-      <p role="status" className="text-sm text-slate-300">{attempt.errorCount > 0 ? "Marked for review." : " "}</p>
+      <output className="text-sm text-slate-300">{attempt.errorCount > 0 ? "Marked for review." : " "}</output>
     </section>
   );
 }

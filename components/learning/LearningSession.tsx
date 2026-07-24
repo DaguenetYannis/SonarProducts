@@ -11,7 +11,14 @@ import { QuizQuestionView } from "@/components/questions/QuizQuestionView";
 import { FlashcardQuestionView } from "@/components/questions/FlashcardQuestionView";
 import { MindMapQuestionView } from "@/components/questions/MindMapQuestionView";
 
-export function LearningSession({ levelId, title, topics, questions }: { levelId: string; title: string; topics: string[]; questions: LearningQuestion[] }) {
+type LearningSessionProps = Readonly<{
+  levelId: string;
+  title: string;
+  topics: string[];
+  questions: LearningQuestion[];
+}>;
+
+export function LearningSession({ levelId, title, topics, questions }: LearningSessionProps) {
   const [retrySeed, setRetrySeed] = useState(1);
   const service = useMemo(() => new LevelSessionService({
     levelAttemptId: `local-${retrySeed}`,
@@ -41,12 +48,7 @@ export function LearningSession({ levelId, title, topics, questions }: { levelId
     sync(next);
     const afterAttempt = beforeQuestion ? next.attempts[beforeQuestion.id] : null;
     if (afterAttempt?.status === "completed") {
-      const delay = beforeQuestion?.type === "mind_map" && afterAttempt.eventuallyCorrect
-        ? transitionConfig.mindMapCorrectHoldMs
-        : afterAttempt.eventuallyCorrect
-          ? transitionConfig.standardCorrectFeedbackMs
-          : transitionConfig.failedAnswerRevealMs;
-      runLockedDelay(delay);
+      runLockedDelay(getObjectiveTransitionDelay(beforeQuestion?.type, afterAttempt.eventuallyCorrect));
     }
   }
 
@@ -116,4 +118,10 @@ function clearPendingTimer(timerRef: React.MutableRefObject<ReturnType<typeof se
     globalThis.clearTimeout(timerRef.current);
     timerRef.current = null;
   }
+}
+
+function getObjectiveTransitionDelay(questionType: LearningQuestion["type"] | undefined, eventuallyCorrect: boolean) {
+  if (!eventuallyCorrect) return transitionConfig.failedAnswerRevealMs;
+  if (questionType === "mind_map") return transitionConfig.mindMapCorrectHoldMs;
+  return transitionConfig.standardCorrectFeedbackMs;
 }

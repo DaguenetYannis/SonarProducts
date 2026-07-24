@@ -3,7 +3,17 @@
 import Link from "next/link";
 import type { LevelResult } from "@/domain/entities/question";
 
-export function ResultScreen({ result, onRetry }: { result: LevelResult; onRetry: () => void }) {
+type ResultScreenProps = Readonly<{
+  result: LevelResult;
+  onRetry: () => void;
+}>;
+
+type MetricProps = Readonly<{
+  label: string;
+  value: string | number;
+}>;
+
+export function ResultScreen({ result, onRetry }: ResultScreenProps) {
   return (
     <section className="grid gap-5 rounded-lg border border-line bg-panel p-4 text-center sm:p-6">
       <h2 className="text-2xl font-semibold leading-tight">Level complete</h2>
@@ -23,7 +33,7 @@ export function ResultScreen({ result, onRetry }: { result: LevelResult; onRetry
   );
 }
 
-function Metric({ label, value }: { label: string; value: string | number }) {
+function Metric({ label, value }: MetricProps) {
   return (
     <div className="rounded-lg border border-line bg-ink p-3">
       <dt className="text-slate-400">{label}</dt>

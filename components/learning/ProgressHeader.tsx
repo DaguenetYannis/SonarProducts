@@ -1,6 +1,13 @@
 "use client";
 
-export function ProgressHeader({ title, topics, current, total }: { title: string; topics: string[]; current: number; total: number }) {
+type ProgressHeaderProps = Readonly<{
+  title: string;
+  topics: string[];
+  current: number;
+  total: number;
+}>;
+
+export function ProgressHeader({ title, topics, current, total }: ProgressHeaderProps) {
   const percent = total === 0 ? 0 : Math.round((current / total) * 100);
   return (
     <header className="grid gap-3">

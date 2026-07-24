@@ -1,6 +1,6 @@
 "use client";
 
-interface ChoiceButtonProps {
+type ChoiceButtonProps = Readonly<{
   id: string;
   label: string;
   disabled: boolean;
@@ -8,7 +8,7 @@ interface ChoiceButtonProps {
   correct: boolean;
   revealed: boolean;
   onChoose: (id: string) => void;
-}
+}>;
 
 export function ChoiceButton({ id, label, disabled, selected, correct, revealed, onChoose }: ChoiceButtonProps) {
   const stateClass = revealed && correct
