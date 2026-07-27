@@ -84,25 +84,22 @@
           "back": "Sonar helps teams verify that code is reliable, maintainable, and secure before it reaches production. It applies automated, explainable analysis across developer and AI-generated code."
         },
         {
-          "type": "quiz",
-          "key": "l1-product-ide-feedback",
-          "prompt": "Which product gives feedback inside the editor?",
+          "type": "mind_map",
+          "key": "l1-map-cse-ownership",
+          "prompt": "What does a Sonar CSE own?",
+          "nodes": [
+            { "key": "center", "parentKey": null, "label": "Sonar CSE", "isTarget": false },
+            { "key": "adoption", "parentKey": "center", "label": "Adoption", "isTarget": false },
+            { "key": "health", "parentKey": "center", "label": "Customer health", "isTarget": false },
+            { "key": "outcomes", "parentKey": "center", "label": "Value realization", "isTarget": false },
+            { "key": "technical-plan", "parentKey": "adoption", "label": "Technical success plan", "isTarget": false },
+            { "key": "risk", "parentKey": "health", "label": "Risk signals", "isTarget": false },
+            { "key": "value-metric", "parentKey": "outcomes", "label": null, "isTarget": true }
+          ],
           "choices": [
-            {
-              "key": "sonarqube-for-ide",
-              "label": "SonarQube for IDE",
-              "isCorrect": true
-            },
-            {
-              "key": "sonarqube-advanced-security",
-              "label": "SonarQube Advanced Security",
-              "isCorrect": false
-            },
-            {
-              "key": "sonarsweep",
-              "label": "SonarSweep",
-              "isCorrect": false
-            }
+            { "key": "measurable-value", "label": "Measurable customer value", "isCorrect": true },
+            { "key": "invoice-routing", "label": "Invoice processing status", "isCorrect": false },
+            { "key": "production-hosting", "label": "Production hosting uptime", "isCorrect": false }
           ]
         },
         {
@@ -113,25 +110,21 @@
           "back": "Connected Mode binds the IDE workspace to a SonarQube project. It synchronizes team rules, project settings, issue statuses, and quality-gate notifications into the developer's editor."
         },
         {
-          "type": "quiz",
-          "key": "l1-cloud-operating-model",
-          "prompt": "Which product is Sonar-managed SaaS?",
+          "type": "mind_map",
+          "key": "l1-map-product-operating-model",
+          "prompt": "Which product completes this operating-model map?",
+          "nodes": [
+            { "key": "center", "parentKey": null, "label": "SonarQube product choice", "isTarget": false },
+            { "key": "saas", "parentKey": "center", "label": null, "isTarget": true },
+            { "key": "self-managed", "parentKey": "center", "label": "SonarQube Server", "isTarget": false },
+            { "key": "editor", "parentKey": "center", "label": "SonarQube for IDE", "isTarget": false },
+            { "key": "low-ops", "parentKey": "saas", "label": "Sonar-managed SaaS", "isTarget": false },
+            { "key": "data-control", "parentKey": "self-managed", "label": "Customer-managed deployment", "isTarget": false }
+          ],
           "choices": [
-            {
-              "key": "sonarqube-cloud",
-              "label": "SonarQube Cloud",
-              "isCorrect": true
-            },
-            {
-              "key": "sonarqube-server",
-              "label": "SonarQube Server",
-              "isCorrect": false
-            },
-            {
-              "key": "community-build",
-              "label": "SonarQube Community Build",
-              "isCorrect": false
-            }
+            { "key": "sonarqube-cloud", "label": "SonarQube Cloud", "isCorrect": true },
+            { "key": "ai-codefix", "label": "AI CodeFix", "isCorrect": false },
+            { "key": "quality-profile", "label": "Quality Profile", "isCorrect": false }
           ]
         },
         {
@@ -302,25 +295,21 @@
           "back": "AI-generated code can still contain bugs, vulnerabilities, and maintainability issues. Sonar's position is that independent verification is needed because generation and review should not be the same unchecked process."
         },
         {
-          "type": "quiz",
-          "key": "l1-ai-code-assurance-basic",
-          "prompt": "What is AI Code Assurance for?",
+          "type": "mind_map",
+          "key": "l1-map-ai-code-assurance",
+          "prompt": "What outcome belongs in the AI-code use-case map?",
+          "nodes": [
+            { "key": "center", "parentKey": null, "label": "Customer adopts AI coding assistants", "isTarget": false },
+            { "key": "problem", "parentKey": "center", "label": "Faster code generation than review", "isTarget": false },
+            { "key": "capability", "parentKey": "center", "label": "AI Code Assurance", "isTarget": false },
+            { "key": "outcome", "parentKey": "center", "label": null, "isTarget": true },
+            { "key": "gate", "parentKey": "capability", "label": "Dedicated quality gates", "isTarget": false },
+            { "key": "audit", "parentKey": "outcome", "label": "Auditable verification", "isTarget": false }
+          ],
           "choices": [
-            {
-              "key": "ai-project-standards",
-              "label": "Applying stronger standards to projects with AI code",
-              "isCorrect": true
-            },
-            {
-              "key": "model-training",
-              "label": "Training a new language model from scratch",
-              "isCorrect": false
-            },
-            {
-              "key": "ide-theme",
-              "label": "Changing the IDE visual theme",
-              "isCorrect": false
-            }
+            { "key": "controlled-adoption", "label": "Controlled adoption of coding assistants", "isCorrect": true },
+            { "key": "remove-review", "label": "Remove code review entirely", "isCorrect": false },
+            { "key": "train-model", "label": "Train the customer's LLM", "isCorrect": false }
           ]
         },
         {
@@ -345,25 +334,21 @@
       ],
       "questions": [
         {
-          "type": "quiz",
-          "key": "l2-connected-mode-benefit",
-          "prompt": "A team wants identical IDE and server rules. What helps?",
+          "type": "mind_map",
+          "key": "l2-map-customer-lifecycle",
+          "prompt": "What lifecycle step is missing from this CSE map?",
+          "nodes": [
+            { "key": "center", "parentKey": null, "label": "Sonar customer lifecycle", "isTarget": false },
+            { "key": "onboard", "parentKey": "center", "label": "Onboard real projects", "isTarget": false },
+            { "key": "adopt", "parentKey": "center", "label": null, "isTarget": true },
+            { "key": "mature", "parentKey": "center", "label": "Mature governance", "isTarget": false },
+            { "key": "first-value", "parentKey": "onboard", "label": "First actionable findings", "isTarget": false },
+            { "key": "expand", "parentKey": "mature", "label": "Scale standards and reporting", "isTarget": false }
+          ],
           "choices": [
-            {
-              "key": "connected-mode",
-              "label": "Connected Mode",
-              "isCorrect": true
-            },
-            {
-              "key": "new-code-definition",
-              "label": "New Code Definition",
-              "isCorrect": false
-            },
-            {
-              "key": "software-bill-of-materials",
-              "label": "Software Bill of Materials",
-              "isCorrect": false
-            }
+            { "key": "embed-workflow", "label": "Embed Sonar in daily developer workflow", "isCorrect": true },
+            { "key": "delay-access", "label": "Delay developer access until renewal", "isCorrect": false },
+            { "key": "replace-ci", "label": "Replace the customer's CI platform", "isCorrect": false }
           ]
         },
         {
@@ -403,25 +388,21 @@
           "back": "It brings Sonar findings and Quality Gate status into the repository platform where developers already review code. This reduces context switching and makes governance visible before merge."
         },
         {
-          "type": "quiz",
-          "key": "l2-profile-versus-gate",
-          "prompt": "Which pair is correctly distinguished?",
+          "type": "mind_map",
+          "key": "l2-map-rule-to-quality-gate",
+          "prompt": "What concept connects rules to enforceable policy?",
+          "nodes": [
+            { "key": "center", "parentKey": null, "label": "From finding to enforcement", "isTarget": false },
+            { "key": "rule", "parentKey": "center", "label": "Rule", "isTarget": false },
+            { "key": "issue", "parentKey": "center", "label": "Issue", "isTarget": false },
+            { "key": "gate", "parentKey": "center", "label": null, "isTarget": true },
+            { "key": "profile", "parentKey": "rule", "label": "Quality Profile activates rules", "isTarget": false },
+            { "key": "pass-fail", "parentKey": "gate", "label": "Pass/fail decision before merge or release", "isTarget": false }
+          ],
           "choices": [
-            {
-              "key": "profile-rules-gate-thresholds",
-              "label": "Profile selects rules; gate checks thresholds",
-              "isCorrect": true
-            },
-            {
-              "key": "profile-hosts-gate-edits",
-              "label": "Profile hosts code; gate edits code",
-              "isCorrect": false
-            },
-            {
-              "key": "profile-sales-gate-support",
-              "label": "Profile tracks sales; gate routes support",
-              "isCorrect": false
-            }
+            { "key": "quality-gate", "label": "Quality Gate", "isCorrect": true },
+            { "key": "support-ticket", "label": "Support ticket", "isCorrect": false },
+            { "key": "hosting-region", "label": "Hosting region", "isCorrect": false }
           ]
         },
         {
@@ -483,25 +464,21 @@
           "back": "Coverage estimates how much code is exercised by tests. It is useful for reliability discussions, but high coverage alone does not prove the code is bug-free."
         },
         {
-          "type": "quiz",
-          "key": "l2-cloud-versus-server",
-          "prompt": "A customer needs self-managed data control. Which fits best?",
+          "type": "mind_map",
+          "key": "l2-map-products-in-sdlc",
+          "prompt": "Where does SonarQube for IDE act in the SDLC?",
+          "nodes": [
+            { "key": "center", "parentKey": null, "label": "Sonar in the SDLC", "isTarget": false },
+            { "key": "ide", "parentKey": "center", "label": null, "isTarget": true },
+            { "key": "pr", "parentKey": "center", "label": "Pull-request analysis", "isTarget": false },
+            { "key": "ci", "parentKey": "center", "label": "CI/CD quality gate", "isTarget": false },
+            { "key": "early", "parentKey": "ide", "label": "Feedback while coding", "isTarget": false },
+            { "key": "central", "parentKey": "ci", "label": "Central verification and history", "isTarget": false }
+          ],
           "choices": [
-            {
-              "key": "sonarqube-server",
-              "label": "SonarQube Server",
-              "isCorrect": true
-            },
-            {
-              "key": "sonarqube-cloud",
-              "label": "SonarQube Cloud",
-              "isCorrect": false
-            },
-            {
-              "key": "sonarqube-for-ide",
-              "label": "SonarQube for IDE alone",
-              "isCorrect": false
-            }
+            { "key": "before-commit", "label": "Before commit, inside the editor", "isCorrect": true },
+            { "key": "after-production", "label": "After production incidents only", "isCorrect": false },
+            { "key": "billing", "label": "During subscription invoicing", "isCorrect": false }
           ]
         },
         {
@@ -534,25 +511,22 @@
           "back": "Duplicated code can increase maintenance cost because the same logic may need to be fixed in several places. It is a code-health metric, not a direct security finding."
         },
         {
-          "type": "quiz",
-          "key": "l2-adoption-signal",
-          "prompt": "Which signal best indicates adoption progress?",
+          "type": "mind_map",
+          "key": "l2-map-stakeholder-priorities",
+          "prompt": "Which stakeholder priority is missing?",
+          "nodes": [
+            { "key": "center", "parentKey": null, "label": "Sonar stakeholders", "isTarget": false },
+            { "key": "developers", "parentKey": "center", "label": "Developers", "isTarget": false },
+            { "key": "security", "parentKey": "center", "label": "Security", "isTarget": false },
+            { "key": "leadership", "parentKey": "center", "label": "Engineering leadership", "isTarget": false },
+            { "key": "dev-priority", "parentKey": "developers", "label": "Clear feedback with low context switching", "isTarget": false },
+            { "key": "security-priority", "parentKey": "security", "label": null, "isTarget": true },
+            { "key": "leadership-priority", "parentKey": "leadership", "label": "Visibility, standards, and accountability", "isTarget": false }
+          ],
           "choices": [
-            {
-              "key": "teams-using-pr-gates",
-              "label": "Teams consistently using PR analysis and gates",
-              "isCorrect": true
-            },
-            {
-              "key": "one-demo-attended",
-              "label": "One stakeholder attended a demo",
-              "isCorrect": false
-            },
-            {
-              "key": "pricing-page-opened",
-              "label": "A user opened the pricing page",
-              "isCorrect": false
-            }
+            { "key": "early-risk-control", "label": "Earlier vulnerability detection and enforceable controls", "isCorrect": true },
+            { "key": "font-choice", "label": "Application font selection", "isCorrect": false },
+            { "key": "sprint-name", "label": "Sprint name standardization", "isCorrect": false }
           ]
         },
         {
@@ -824,25 +798,21 @@
           "back": "Advanced SAST extends data-flow analysis across dependency boundaries. It helps find vulnerabilities caused by interactions between first-party code and third-party libraries."
         },
         {
-          "type": "quiz",
-          "key": "l3-risk-signal",
-          "prompt": "Which scenario is the strongest CSE risk signal?",
+          "type": "mind_map",
+          "key": "l3-map-problem-to-use-case",
+          "prompt": "Which Sonar use case fits this customer problem?",
+          "nodes": [
+            { "key": "center", "parentKey": null, "label": "Customer problem", "isTarget": false },
+            { "key": "late-security", "parentKey": "center", "label": "Security review occurs too late", "isTarget": false },
+            { "key": "unclear-findings", "parentKey": "center", "label": "Developers receive unclear findings", "isTarget": false },
+            { "key": "use-case", "parentKey": "center", "label": null, "isTarget": true },
+            { "key": "capabilities", "parentKey": "use-case", "label": "SAST, taint analysis, hotspots, gates", "isTarget": false },
+            { "key": "outcome", "parentKey": "use-case", "label": "Shift security earlier", "isTarget": false }
+          ],
           "choices": [
-            {
-              "key": "ai-code-bypasses-gates",
-              "label": "AI-generated code bypasses quality gates before release",
-              "isCorrect": true
-            },
-            {
-              "key": "champion-requests-review",
-              "label": "A champion requests an outcome review",
-              "isCorrect": false
-            },
-            {
-              "key": "teams-expand-pr-analysis",
-              "label": "More teams adopt pull-request analysis",
-              "isCorrect": false
-            }
+            { "key": "developer-led-security", "label": "Developer-led code security", "isCorrect": true },
+            { "key": "runtime-observability", "label": "Runtime observability", "isCorrect": false },
+            { "key": "ticket-routing", "label": "Ticket routing automation", "isCorrect": false }
           ]
         },
         {
@@ -882,25 +852,21 @@
           "back": "A CSE should hand off when a signal is tied to a clear customer need, stakeholder, value hypothesis, and likely commercial motion. The handoff should be qualified, not just a vague mention of interest."
         },
         {
-          "type": "quiz",
-          "key": "l3-cse-best-follow-up",
-          "prompt": "A VP worries AI code increases outages. Best CSE follow-up?",
+          "type": "mind_map",
+          "key": "l3-map-value-diagnosis",
+          "prompt": "Why is the customer not obtaining value?",
+          "nodes": [
+            { "key": "center", "parentKey": null, "label": "Low Sonar value", "isTarget": false },
+            { "key": "symptom", "parentKey": "center", "label": "Developers ignore findings", "isTarget": false },
+            { "key": "evidence", "parentKey": "center", "label": "Quality gates bypassed", "isTarget": false },
+            { "key": "diagnosis", "parentKey": "center", "label": null, "isTarget": true },
+            { "key": "action", "parentKey": "diagnosis", "label": "Refocus on new code and workflow adoption", "isTarget": false },
+            { "key": "metric", "parentKey": "diagnosis", "label": "PR gate usage and new-code issue trend", "isTarget": false }
+          ],
           "choices": [
-            {
-              "key": "ask-governance-workflow",
-              "label": "Ask how AI code is verified before merge today",
-              "isCorrect": true
-            },
-            {
-              "key": "promise-zero-defects",
-              "label": "Promise Sonar will eliminate all defects",
-              "isCorrect": false
-            },
-            {
-              "key": "ignore-ai-context",
-              "label": "Move directly to pricing discussion",
-              "isCorrect": false
-            }
+            { "key": "workflow-not-embedded", "label": "Sonar is installed but not embedded in the workflow", "isCorrect": true },
+            { "key": "too-many-logins", "label": "There are too many login screens", "isCorrect": false },
+            { "key": "pricing-only", "label": "The issue is only pricing", "isCorrect": false }
           ]
         },
         {

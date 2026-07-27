@@ -6,6 +6,7 @@ test-results
 prisma/dev.db
 prisma/dev.db-journal
 *.log
+personal-mindmaps/
 
 .env
 *.tsbuildinfo

@@ -1,7 +1,9 @@
 "use client";
 
+import { useMemo } from "react";
 import type { QuizQuestion, QuestionAttemptState } from "@/domain/entities/question";
 import { ChoiceButton } from "@/components/questions/ChoiceButton";
+import { shuffleChoices } from "@/lib/choiceShuffle";
 
 type QuizQuestionViewProps = Readonly<{
   question: QuizQuestion;
@@ -15,11 +17,16 @@ type StatusTextProps = Readonly<{
 }>;
 
 export function QuizQuestionView({ question, attempt, disabled, onAnswer }: QuizQuestionViewProps) {
+  const choices = useMemo(
+    () => shuffleChoices(question.choices, `${attempt.levelAttemptId}:${question.id}:${attempt.encounters}`),
+    [attempt.encounters, attempt.levelAttemptId, question.choices, question.id]
+  );
+
   return (
     <section className="grid gap-5" aria-labelledby="quiz-prompt">
       <h2 id="quiz-prompt" className="text-2xl font-semibold leading-tight">{question.prompt}</h2>
       <div className="grid gap-3">
-        {question.choices.map((choice) => (
+        {choices.map((choice) => (
           <ChoiceButton
             key={choice.id}
             id={choice.id}

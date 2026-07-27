@@ -20,9 +20,13 @@ type LevelListProps = Readonly<{
   hrefForLevel: (level: LevelListItem) => string;
 }>;
 
+type MainMenuLinksProps = Readonly<{
+  glossaryHref: string;
+}>;
+
 export function LearningHome({ eyebrow, title, description, action, children }: LearningHomeProps) {
   return (
-    <main className="min-h-dvh py-8 sm:py-10">
+    <main className="min-h-dvh pb-24 pt-8 sm:pb-28 sm:pt-10">
       <section className="mx-auto flex max-w-3xl flex-col gap-7">
         <div className="text-center">
           <p className="text-sm uppercase tracking-[0.18em] text-good">{eyebrow}</p>
@@ -51,5 +55,18 @@ export function LevelList({ levels, hrefForLevel }: LevelListProps) {
         </Link>
       ))}
     </div>
+  );
+}
+
+export function MainMenuLinks({ glossaryHref }: MainMenuLinksProps) {
+  return (
+    <nav aria-label="Main menu" className="grid gap-3">
+      <Link href={glossaryHref} className="rounded-lg border border-good/50 bg-good/10 p-5 transition hover:border-good active:border-good">
+        <div className="grid gap-2">
+          <h2 className="text-xl font-semibold">Glossary</h2>
+          <p className="text-sm leading-6 text-slate-300">Definitions for Sonar, code quality, security, governance, AI code, and CSE vocabulary.</p>
+        </div>
+      </Link>
+    </nav>
   );
 }

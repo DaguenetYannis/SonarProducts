@@ -86,11 +86,20 @@ async function createLevelQuestion(tx: ImportTransaction, levelId: string, quest
   } else if (question.type === "flashcard") {
     await tx.flashcardQuestion.create({ data: { questionId: savedQuestion.id, front: question.front, back: question.back } });
   } else {
+    const nodeIdFor = (nodeKey: string) => `${savedQuestion.id}:${nodeKey}`;
     await tx.mindMapQuestion.create({
       data: {
         questionId: savedQuestion.id,
         layoutMetadata: question.layoutMetadata ? JSON.stringify(question.layoutMetadata) : undefined,
-        nodes: { create: question.nodes.map((node, index) => ({ label: node.label, parentNodeId: node.parentKey, isTarget: node.isTarget, sortOrder: index })) },
+        nodes: {
+          create: question.nodes.map((node, index) => ({
+            id: nodeIdFor(node.key),
+            label: node.label,
+            parentNodeId: node.parentKey ? nodeIdFor(node.parentKey) : null,
+            isTarget: node.isTarget,
+            sortOrder: index
+          }))
+        },
         choices: { create: question.choices.map(toChoiceData) }
       }
     });

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { validateSonarContent } from "@/scripts/validate-sonar-content";
 
-const pattern = ["quiz", "flashcard", "quiz", "flashcard", "quiz", "quiz", "flashcard", "quiz", "flashcard", "quiz", "quiz", "flashcard", "quiz", "flashcard", "quiz", "flashcard", "quiz", "flashcard"] as const;
+const pattern = ["quiz", "flashcard", "mind_map", "quiz", "flashcard", "quiz", "mind_map", "flashcard", "quiz", "flashcard", "quiz", "mind_map", "flashcard", "quiz", "flashcard", "mind_map", "quiz", "flashcard"] as const;
 
 const validLevel = (slug: string) => ({
   slug,
@@ -18,12 +18,26 @@ const validLevel = (slug: string) => ({
           { key: "choice-c", label: "C", isCorrect: false }
         ]
       }
-    : {
+    : type === "flashcard" ? {
         type,
         key: `${slug}-flashcard-${index}`,
         prompt: "Prompt",
         front: "Front",
         back: "Back"
+      }
+    : {
+        type,
+        key: `${slug}-mind-map-${index}`,
+        prompt: "Map",
+        nodes: [
+          { key: "center", parentKey: null, label: "Center", isTarget: false },
+          { key: "branch", parentKey: "center", label: null, isTarget: true }
+        ],
+        choices: [
+          { key: "choice-a", label: "A", isCorrect: true },
+          { key: "choice-b", label: "B", isCorrect: false },
+          { key: "choice-c", label: "C", isCorrect: false }
+        ]
       })
 });
 
@@ -36,10 +50,23 @@ describe("validateSonarContent", () => {
     expect(result.totalQuestions).toBe(54);
   });
 
-  it("rejects mind-map questions", () => {
+  it("rejects invalid mind-map questions", () => {
     const content = { topics: [{ slug: "sonar", title: "Sonar" }], levels: [validLevel("level-one"), validLevel("level-two"), validLevel("level-three")] };
-    content.levels[0].questions[0] = { type: "mind_map", key: "bad-map", prompt: "Map" } as never;
-    expect(() => validateSonarContent(content)).toThrow();
+    content.levels[0].questions[2] = {
+      type: "mind_map",
+      key: "bad-map",
+      prompt: "Map",
+      nodes: [
+        { key: "center", parentKey: null, label: "Center", isTarget: false },
+        { key: "branch", parentKey: "missing", label: null, isTarget: true }
+      ],
+      choices: [
+        { key: "choice-a", label: "A", isCorrect: true },
+        { key: "choice-b", label: "B", isCorrect: false },
+        { key: "choice-c", label: "C", isCorrect: false }
+      ]
+    } as never;
+    expect(() => validateSonarContent(content)).toThrow(/unknown parent node/);
   });
 
   it("rejects grouped question types", () => {

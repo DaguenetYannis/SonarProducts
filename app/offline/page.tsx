@@ -1,4 +1,4 @@
-import { LearningHome, LevelList } from "@/components/learning/LevelList";
+import { LearningHome, LevelList, MainMenuLinks } from "@/components/learning/LevelList";
 import { InstallAppButton } from "@/components/pwa/InstallAppButton";
 import { listStaticLevels } from "@/lib/staticLearningContent";
 
@@ -14,6 +14,7 @@ export default function OfflineHomePage() {
       description="Install this mode on your phone and study the bundled Sonar curriculum without a local server."
       action={<InstallAppButton />}
     >
+      <MainMenuLinks glossaryHref="/offline/glossary" />
       <LevelList levels={levels} hrefForLevel={(level) => `/offline/levels/${level.id}`} />
     </LearningHome>
   );

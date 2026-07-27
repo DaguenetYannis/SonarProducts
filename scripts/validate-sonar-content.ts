@@ -25,6 +25,22 @@ const flashcardSchema = z.object({
   back: z.string()
 }).strict();
 
+const mindMapNodeSchema = z.object({
+  key: z.string(),
+  parentKey: z.string().nullable(),
+  label: z.string().nullable(),
+  isTarget: z.boolean()
+}).strict();
+
+const mindMapSchema = z.object({
+  type: z.literal("mind_map"),
+  key: z.string(),
+  prompt: z.string(),
+  nodes: z.array(mindMapNodeSchema),
+  choices: z.array(quizChoiceSchema),
+  layoutMetadata: z.record(z.unknown()).optional()
+}).strict();
+
 const contentSchema = z.object({
   topics: z.array(z.object({
     slug: z.string(),
@@ -36,7 +52,7 @@ const contentSchema = z.object({
     title: z.string(),
     description: z.string().optional(),
     topicSlugs: z.array(z.string()),
-    questions: z.array(z.union([quizSchema, flashcardSchema]))
+    questions: z.array(z.union([quizSchema, flashcardSchema, mindMapSchema]))
   }).strict())
 }).strict();
 
@@ -47,7 +63,7 @@ type ParsedQuiz = Extract<ParsedQuestion, { type: "quiz" }>;
 
 export interface ValidationResult {
   totalQuestions: number;
-  levelSummaries: Array<{ slug: string; quizzes: number; flashcards: number }>;
+  levelSummaries: Array<{ slug: string; quizzes: number; flashcards: number; mindMaps: number }>;
 }
 
 export function validateSonarContent(raw: unknown): ValidationResult {
@@ -81,19 +97,21 @@ function validateLevel(level: ParsedLevel, topicSlugs: Set<string>, questionKeys
 
   const quizzes = level.questions.filter((question) => question.type === "quiz").length;
   const flashcards = level.questions.filter((question) => question.type === "flashcard").length;
-  validateLevelShape(level, quizzes, flashcards, errors);
+  const mindMaps = level.questions.filter((question) => question.type === "mind_map").length;
+  validateLevelShape(level, quizzes, flashcards, mindMaps, errors);
 
   for (const question of level.questions) {
     validateQuestion(question, questionKeys, errors);
   }
 
-  return { slug: level.slug, quizzes, flashcards };
+  return { slug: level.slug, quizzes, flashcards, mindMaps };
 }
 
-function validateLevelShape(level: ParsedLevel, quizzes: number, flashcards: number, errors: string[]) {
+function validateLevelShape(level: ParsedLevel, quizzes: number, flashcards: number, mindMaps: number, errors: string[]) {
   if (level.questions.length !== 18) errors.push(`Level ${level.slug} must have 18 questions, found ${level.questions.length}.`);
-  if (quizzes !== 10) errors.push(`Level ${level.slug} must have 10 quizzes, found ${quizzes}.`);
-  if (flashcards !== 8) errors.push(`Level ${level.slug} must have 8 flashcards, found ${flashcards}.`);
+  if (quizzes < 6) errors.push(`Level ${level.slug} must have at least 6 quizzes, found ${quizzes}.`);
+  if (flashcards < 6) errors.push(`Level ${level.slug} must have at least 6 flashcards, found ${flashcards}.`);
+  if (mindMaps < 2) errors.push(`Level ${level.slug} must have at least 2 mind maps, found ${mindMaps}.`);
   if (isGrouped(level.questions.map((question) => question.type))) {
     errors.push(`Level ${level.slug} groups question types instead of mixing them.`);
   }
@@ -104,6 +122,7 @@ function validateQuestion(question: ParsedQuestion, questionKeys: Set<string>, e
   if (questionKeys.has(question.key)) errors.push(`Duplicated question key: ${question.key}`);
   questionKeys.add(question.key);
   if (question.type === "quiz") validateQuiz(question, errors);
+  if (question.type === "mind_map") validateMindMap(question, errors);
 }
 
 function validateQuiz(question: ParsedQuiz, errors: string[]) {
@@ -117,6 +136,30 @@ function validateQuiz(question: ParsedQuiz, errors: string[]) {
     if (!kebabCase.test(choice.key)) errors.push(`Choice key is not kebab-case: ${question.key}.${choice.key}`);
     if (choiceKeys.has(choice.key)) errors.push(`Duplicated choice key in ${question.key}: ${choice.key}`);
     choiceKeys.add(choice.key);
+  }
+}
+
+function validateMindMap(question: Extract<ParsedQuestion, { type: "mind_map" }>, errors: string[]) {
+  if (question.nodes.length < 2) errors.push(`Mind map ${question.key} must have at least 2 nodes.`);
+  if (question.nodes.filter((node) => node.isTarget).length !== 1) {
+    errors.push(`Mind map ${question.key} must have exactly 1 target node.`);
+  }
+  validateQuiz({ type: "quiz", key: question.key, prompt: question.prompt, choices: question.choices }, errors);
+
+  const nodeKeys = new Set<string>();
+  for (const node of question.nodes) {
+    if (!kebabCase.test(node.key)) errors.push(`Mind map node key is not kebab-case: ${question.key}.${node.key}`);
+    if (nodeKeys.has(node.key)) errors.push(`Duplicated node key in ${question.key}: ${node.key}`);
+    nodeKeys.add(node.key);
+  }
+
+  for (const node of question.nodes) {
+    if (node.parentKey && !nodeKeys.has(node.parentKey)) {
+      errors.push(`Mind map ${question.key} references unknown parent node ${node.parentKey}.`);
+    }
+    if (node.isTarget && node.label !== null) {
+      errors.push(`Mind map ${question.key} target node must have a null label.`);
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = "sonar-products-v2";
+const CACHE_NAME = "sonar-products-v3";
 const APP_SHELL = [
   "/",
   "/offline",
